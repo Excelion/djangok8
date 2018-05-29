@@ -4,3 +4,4 @@ celery
 redis
 psycopg2
 djangorestframework
+dj-database-url

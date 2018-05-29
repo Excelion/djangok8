@@ -2,7 +2,7 @@ version: '2'
 
 services:
   db:
-    image: postgres:9.4
+    image: postgres
     hostname: db
     environment:
       - POSTGRES_USER=postgres

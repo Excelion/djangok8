@@ -7,7 +7,10 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update && apt-get install -y \
   cron \
   rsyslog \
-  supervisor
+  supervisor \
+  &&  pip install circus \
+  &&  pip install gunicorn
+
 RUN touch /var/log/cron.log
 RUN chmod 0666 /var/log/cron.log
 
@@ -24,7 +27,7 @@ RUN pip install -r ${BA_REQUIREMENTS_FILE}
 
 COPY . /code
 
-ENV DJANGO_SETTINGS_MODULE djangok8.settings
+ENV DJANGO_SETTINGS_MODULE djangok8.settings.production
 
 
 

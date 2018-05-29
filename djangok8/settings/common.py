@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from os import environ
 
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -88,16 +90,12 @@ WSGI_APPLICATION = 'djangok8.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-
+# postgres://USER:PASSWORD@HOST:PORT/NAME
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_ENV_DB', 'postgres'),
-        'USER': os.environ.get('DB_ENV_POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_ENV_POSTGRES_PASSWORD', 'postgres'),
-        'HOST': os.environ.get('DB_PORT_5432_TCP_ADDR', 'db'),
-        'PORT': os.environ.get('DB_PORT_5432_TCP_PORT', ''),
-    },
+    'default': dj_database_url.config(
+      env='ENV_DATABASE_URL',
+      default='postgres://postgres:postgres@db/postgres'
+    ),
 }
 
 
@@ -178,6 +176,9 @@ CELERY_QUEUES = (
 
 # Sensible settings for celery
 CELERY_ALWAYS_EAGER = False
+# RUN Celery task in main thread (SYNC)
+# CELERY_ALWAYS_EAGER = True
+
 CELERY_ACKS_LATE = True
 CELERY_TASK_PUBLISH_RETRY = True
 CELERY_DISABLE_RATE_LIMITS = False
