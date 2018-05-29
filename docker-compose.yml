@@ -49,7 +49,7 @@ services:
       dockerfile: Dockerfile
     command: ./deployment/run_celery.sh
     volumes:
-      - .:/app
+      - .:/code
     links:
       - rabbit
       - redis
