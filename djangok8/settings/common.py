@@ -201,3 +201,32 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERYD_HIJACK_ROOT_LOGGER = False
 CELERYD_PREFETCH_MULTIPLIER = 1
 CELERYD_MAX_TASKS_PER_CHILD = 1000
+
+GRAYLOG_SERVER = 'logs.dealer-advance.com'
+GRAYLOG_PORT = 12201
+
+
+
+LOGGING = {
+    'version': 1,
+    # 'disable_existing_loggers': False,
+
+    'handlers': {
+        'gelf': {
+            'class': 'graypy.GELFHandler',
+            'host': GRAYLOG_SERVER,
+            'port': GRAYLOG_PORT,
+            'level_names': True,
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        # Replace with your projectname
+        'djangok8': {
+            'handlers': ['gelf', 'console'],
+            'level': 'DEBUG',
+        },
+    },
+}
