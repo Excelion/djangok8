@@ -15,6 +15,20 @@ def update_job(fn):
         # sys.path.append('/code/pycharm-debug-py3k.egg')
         # import pydevd
         # pydevd.settrace('172.20.0.1', port=36564, stdoutToServer=True, stderrToServer=True)
+        import logging
+        logger = logging.getLogger('projectname')
+        logger.debug('CELERY --- testing message to graylog2')
+
+        import logging
+        import graypy
+
+        my_logger = logging.getLogger('test_logger3')
+        my_logger.setLevel(logging.DEBUG)
+
+        handler = graypy.GELFHandler('172.20.0.1', 12201)
+        my_logger.addHandler(handler)
+
+        my_logger.debug('CELERY --- testing message to graylog2')
 
         job = Job.objects.get(id=job_id)
         job.status = 'started'
