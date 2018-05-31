@@ -236,7 +236,7 @@ LOGGING = {
     },
     'loggers': {
         # Replace with your projectname
-        'djangok8': {
+        '': {
             'handlers': ['gelf', 'console'],
             'level': 'DEBUG',
         },
