@@ -29,37 +29,57 @@ services:
   # Django web server
   web:
     build:
-      context: .
+      context: ../
       dockerfile: deployment/Dockerfile
     hostname: web
     command: ./deployment/run_web.sh
     stop_signal: KILL
     volumes:
-      - .:/code  # mount current directory inside container
-    ports:
-      - "8081:8081"
+      - ..:/code  # mount current directory inside container, preserve media and static across restarts
+      - /my_django_data/:/my_django_data
+    expose:
+    # uwsgi port
+      - "8000"
     # set up links so that web knows about db, rabbit and redis
     links:
       - rabbit
       - redis
     environment:
-      - DJANGO_SETTINGS_MODULE=djangok8.settings.local
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
       - LOGGING_CUSTOM_TAGS=${LOGGING_CUSTOM_TAGS}
 
 
   # Celery worker
   worker:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../
+      dockerfile: deployment/Dockerfile
     command: ./deployment/run_celery.sh
     volumes:
-      - .:/code
+      - ..:/code
+      - /my_django_data/:/my_django_data
     links:
       - rabbit
       - redis
     depends_on:
       - rabbit
     environment:
-      - DJANGO_SETTINGS_MODULE=djangok8.settings.local
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
       - LOGGING_CUSTOM_TAGS=celery;${LOGGING_CUSTOM_TAGS}
+
+  nginx-certbot:
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    build:
+      context: ./nginx-certbot
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./nginx-certbot/:/cert_folder/
+      - /my_django_data/https_certs/:/etc/letsencrypt
+      - /my_django_data/static/:/my_django_data/static
+      - /my_django_data/media/:/my_django_data/media
+    environment:
+      - DOMAIN=${DOMAIN}
+      - ENABLE_REDIRECT=${ENABLE_REDIRECT}

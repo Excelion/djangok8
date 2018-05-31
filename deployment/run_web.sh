@@ -8,4 +8,9 @@ python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
 
-python manage.py runserver 0.0.0.0:80
+if [ "$DJANGO_SETTINGS_MODULE" = "djangok8.settings.local" ]
+then
+  python manage.py runserver 0.0.0.0:8081
+else
+  /usr/bin/supervisord -c /code/deployment/apps-configs/supervisor-vps.conf
+fi

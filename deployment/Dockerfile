@@ -15,7 +15,7 @@ RUN touch /var/log/cron.log
 RUN chmod 0666 /var/log/cron.log
 
 RUN mkdir /code
-RUN mkdir /briteapps_django_data
+RUN mkdir /my_django_data
 
 WORKDIR /code
 

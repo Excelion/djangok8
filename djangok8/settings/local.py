@@ -8,5 +8,9 @@ DATABASES = {
       default='postgres://postgres:postgres@172.20.0.3/postgres'
     ),
 }
+
+
+LOGGING_ENVIRONMENT = 'local'
+
 ROOT_LOGGER_PROJECT_NAME = 'djangok8'
 

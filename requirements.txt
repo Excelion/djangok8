@@ -6,3 +6,6 @@ psycopg2
 djangorestframework
 dj-database-url
 graypy
+raven
+uwsgi
+

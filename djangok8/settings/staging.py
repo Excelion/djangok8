@@ -9,4 +9,4 @@ from .common import *
 #     ),
 # }
 
-LOGGING_ENVIRONMENT = 'production'
+LOGGING_ENVIRONMENT = 'staging'

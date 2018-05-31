@@ -16,6 +16,7 @@ import os
 from os import environ
 
 import dj_database_url
+import raven
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'll7(sn9_5l)$_p&e)7%3x&7z4bma_l%a45jyt^lcc16*$wrh_3'
 # /code/insuredportal
 
-STATIC_ROOT = os.path.join('/briteapps_django_data/', 'static')
+STATIC_ROOT = os.path.join('/my_django_data/', 'static')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -164,6 +165,8 @@ if not BROKER_URL.endswith(BROKER_HEARTBEAT):
 BROKER_POOL_LIMIT = 1
 BROKER_CONNECTION_TIMEOUT = 10
 
+
+GIT_COMMIT_HASH = raven.fetch_git_sha(os.path.dirname(os.path.abspath(str(BASE_DIR))))
 # Celery configuration
 
 from kombu import Exchange, Queue
@@ -206,17 +209,26 @@ GRAYLOG_SERVER = 'logs.dealer-advance.com'
 GRAYLOG_PORT = 12201
 
 
+LOGGING_ENVIRONMENT = 'common'
+LOGGING_APP = 'django_gleb_test'
+LOGGING_CUSTOM_TAGS = os.getenv('LOGGING_CUSTOM_TAGS')
 
 LOGGING = {
     'version': 1,
     # 'disable_existing_loggers': False,
-
+    'filters': {
+        'special': {
+            '()': 'djangok8.logging.ExtendedFieldsFilter',
+        },
+    },
     'handlers': {
         'gelf': {
             'class': 'graypy.GELFHandler',
             'host': GRAYLOG_SERVER,
             'port': GRAYLOG_PORT,
             'level_names': True,
+            'filters': ['special'],
+
         },
         'console': {
             'class': 'logging.StreamHandler',
