@@ -19,6 +19,7 @@ RUN mkdir /my_django_data
 
 WORKDIR /code
 
+
 ADD requirements.txt /code/
 
 ARG BA_REQUIREMENTS_FILE=requirements.txt
