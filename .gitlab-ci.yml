@@ -1,12 +1,12 @@
-image: docker:dind
+#image: docker:dind
 
 # When using dind, it's wise to use the overlayfs driver for
 # improved performance.
 variables:
   DOCKER_DRIVER: overlay2
 
-services:
-- docker:dind
+#services:
+#- docker:dind
 
 before_script:
   - export DOCKER_HOST="tcp://localhost:2375"
