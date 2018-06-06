@@ -30,8 +30,8 @@ test:
 
 build_image:
   script:
-    - docker build -t registry.gitlab.com/gleb-britecore/djk8/django-web-server:master deployment/Dockerfile
-    - docker push rregistry.gitlab.com/gleb-britecore/djk8/django-web-server:master
+    - docker build -t registry.gitlab.com/gleb-britecore/djk8/django-web-server:master -f deployment/Dockerfile .
+    - docker push registry.gitlab.com/gleb-britecore/djk8/django-web-server:master
 
 
 deploy_staging:
