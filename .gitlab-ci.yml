@@ -37,8 +37,12 @@ deploy_staging:
   script:
     - echo "Deploy to staging server"
     - echo "${KUBE_URL}"
-    - echo "${KUBE_CA_PEM}"
     - echo "${KUBE_CA_PEM}" > kube_ca.pem
+    - kubectl config set-cluster default-cluster --server=${KUBE_URL} --certificate-authority="$(pwd)/kube_ca.pem"
+    - kubectl config set-credentials default-admin --token=${KUBE_TOKEN}
+    - kubectl config set-context default-system --cluster=default-cluster --user=default-admin --namespace ${KUBE_NAMESPACE}
+    - kubectl config use-context default-system
+
 #    - which kubectl
 #    - |
 #    cat <<EOF | kubectl apply -f -
