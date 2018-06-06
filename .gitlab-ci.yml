@@ -35,13 +35,13 @@ deploy_staging:
   script:
     - echo "Deploy to staging server"
     - kubectl get all --all-namespaces
-    - |
-    cat <<EOF | kubectl apply -f -
-        kind: Namespace
-        apiVersion: v1
-        metadata:
-          name: $KUBE_NAMESPACE
-        EOF
+#    - |
+#    cat <<EOF | kubectl apply -f -
+#        kind: Namespace
+#        apiVersion: v1
+#        metadata:
+#          name: $KUBE_NAMESPACE
+#        EOF
   environment:
     name: staging
     url: http://staging.dj.k8.example.com
