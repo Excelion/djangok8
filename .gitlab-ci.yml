@@ -36,6 +36,9 @@ deploy_staging:
   stage: deploy
   script:
     - echo "Deploy to staging server"
+    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    - chmod +x ./kubectl
+    - mv ./kubectl /usr/local/bin/kubectl
     - echo "${KUBE_URL}"
     - echo "${KUBE_CA_PEM}" > kube_ca.pem
     - kubectl config set-cluster default-cluster --server=${KUBE_URL} --certificate-authority="$(pwd)/kube_ca.pem"
