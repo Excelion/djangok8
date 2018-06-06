@@ -36,7 +36,7 @@ deploy_staging:
   stage: deploy
   script:
     - echo "Deploy to staging server"
-    - kubectl get all --all-namespaces
+    - kubectl -?
 #    - |
 #    cat <<EOF | kubectl apply -f -
 #        kind: Namespace
