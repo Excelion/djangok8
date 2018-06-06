@@ -11,13 +11,6 @@ services:
 before_script:
 - docker info
 
-build:
-  stage: build
-  script:
-  - echo "Building the app"
-  - docker build -t my-docker-image .
-  - docker run my-docker-image /script/to/run/tests
-
 stages:
   - test
   - build
@@ -41,6 +34,14 @@ deploy_staging:
   stage: deploy
   script:
     - echo "Deploy to staging server"
+    - kubectl get all --all-namespaces
+    - cat <<EOF | kubectl apply -f -
+      >
+        kind: Namespace
+        apiVersion: v1
+        metadata:
+          name: $KUBE_NAMESPACE
+        EOF
   environment:
     name: staging
     url: http://staging.dj.k8.example.com
