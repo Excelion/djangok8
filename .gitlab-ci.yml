@@ -36,7 +36,10 @@ deploy_staging:
   stage: deploy
   script:
     - echo "Deploy to staging server"
-    - which kubectl
+    - echo "${KUBE_URL}"
+    - echo "${KUBE_CA_PEM}"
+    - echo "${KUBE_CA_PEM}" > kube_ca.pem
+#    - which kubectl
 #    - |
 #    cat <<EOF | kubectl apply -f -
 #        kind: Namespace
