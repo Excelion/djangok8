@@ -13,3 +13,5 @@ spec:
     protocol: TCP
   selector:
     app: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}
+  externalIPs:
+  - 10.233.22.4
