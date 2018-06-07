@@ -53,7 +53,6 @@ deploy_staging:
     - helm
     - helm list
     - pwd
-    - pwd
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - helm upgrade --install dev-echo ./helm-hello-world
 #    - which kubectl
