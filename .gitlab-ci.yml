@@ -53,6 +53,7 @@ deploy_staging:
     - ./get_helm.sh
     - helm
     - helm list
+    - env
     - pwd
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - helm upgrade --install dev-echo ./helm-hello-world
