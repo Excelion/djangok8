@@ -10,7 +10,7 @@ image: docker:stable
 #  - docker:dind
 
 before_script:
-  - export DOCKER_HOST="tcp://localhost:2375"
+#  - export DOCKER_HOST="tcp://localhost:2375"
   - docker info
 
 stages:
@@ -39,7 +39,7 @@ deploy_staging:
   stage: deploy
   image: registry.gitlab.com/gitlab-examples/kubernetes-deploy
   script:
-    - export DOCKER_HOST="tcp://localhost:2375"
+#    - export DOCKER_HOST="tcp://localhost:2375"
     - echo "Deploy to staging server"
     - echo "${KUBE_URL}"
     - echo "${KUBE_CA_PEM}" > kube_ca.pem
