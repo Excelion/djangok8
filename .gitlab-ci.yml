@@ -53,6 +53,7 @@ deploy_staging:
     - helm
     - helm list
     - pwd
+    - pwd
     - helm upgrade --install dev-echo ./helm-hello-world
 #    - which kubectl
 #    - |
