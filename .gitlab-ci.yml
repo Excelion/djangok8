@@ -27,7 +27,7 @@ test:
 
 build_image:
   script:
-    - export DOCKER_HOST="tcp://localhost:2375"
+#    - export DOCKER_HOST="tcp://localhost:2375"
     - docker build -t $CI_REGISTRY_IMAGE:latest -f deployment/Dockerfile .
     # push only for tags
 #    - "[[ -z $CI_BUILD_TAG ]] && exit 0"
