@@ -52,6 +52,8 @@ deploy_staging:
     - ./get_helm.sh
     - helm
     - helm list
+    - pwd
+    - helm install .
 #    - which kubectl
 #    - |
 #    cat <<EOF | kubectl apply -f -

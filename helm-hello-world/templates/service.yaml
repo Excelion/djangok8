@@ -11,6 +11,5 @@ spec:
   - port: 80
     targetPort: 8080
     protocol: TCP
-  type: NodePort
   selector:
     app: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}
