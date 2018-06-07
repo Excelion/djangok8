@@ -27,11 +27,11 @@ test:
 build_image:
   script:
     - export DOCKER_HOST="tcp://localhost:2375"
-#    - docker build -t $CI_REGISTRY_IMAGE:latest -f deployment/Dockerfile .
+    - docker build -t $CI_REGISTRY_IMAGE:latest -f deployment/Dockerfile .
     # push only for tags
 #    - "[[ -z $CI_BUILD_TAG ]] && exit 0"
-#    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-#    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:latest
 
 
 deploy_staging:
