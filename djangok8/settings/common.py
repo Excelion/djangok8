@@ -215,7 +215,7 @@ LOGGING_CUSTOM_TAGS = os.getenv('LOGGING_CUSTOM_TAGS')
 
 LOGGING = {
     'version': 1,
-    # 'disable_existing_loggers': False,
+    'disable_existing_loggers': False,
     'filters': {
         'special': {
             '()': 'djangok8.logging.ExtendedFieldsFilter',
