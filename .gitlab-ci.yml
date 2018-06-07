@@ -47,6 +47,7 @@ deploy_staging:
     - kubectl config set-context default-system --cluster=default-cluster --user=default-admin --namespace ${KUBE_NAMESPACE}
     - kubectl config use-context default-system
     - kubectl cluster-info
+    - helm
 #    - which kubectl
 #    - |
 #    cat <<EOF | kubectl apply -f -
