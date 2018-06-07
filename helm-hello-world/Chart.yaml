@@ -1,4 +1,4 @@
 apiVersion: v1
 description: A Helm chart for Kubernetes
-name: hello-world-7
+name: helm-hello-world
 version: 0.1.0
