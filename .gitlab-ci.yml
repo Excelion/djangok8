@@ -51,6 +51,7 @@ deploy_staging:
     - chmod 700 get_helm.sh
     - ./get_helm.sh
     - helm
+    - helm list
 #    - which kubectl
 #    - |
 #    cat <<EOF | kubectl apply -f -
