@@ -25,17 +25,17 @@ class JobViewSet(mixins.CreateModelMixin,
 def test_func(request):
     ts = perf_counter()
 
-    my_logger.debug('Hello Graylog2. ' + str(datetime.datetime.now().isoformat()), extra={'extra_1': 'ti che???'} )
-    my_logger.debug('Hello a?.' + str(datetime.datetime.now().isoformat()), extra={'extra_2': 'nu net'}  )
-    my_logger.debug('Hello b?.' + str(datetime.datetime.now().isoformat()) )
+    my_logger.info('Hello Graylog2. ' + str(datetime.datetime.now().isoformat()), extra={'extra_1': 'ti che???'} )
+    my_logger.info('Hello a?.' + str(datetime.datetime.now().isoformat()), extra={'extra_2': 'nu net'}  )
+    my_logger.info('Hello b?.' + str(datetime.datetime.now().isoformat()) )
 
     print('aaa')
     te = perf_counter()
     diff = te - ts
     ms_elapsed = round(diff * 1000, 2)
-    my_logger.debug('test_func timings', extra={
+    my_logger.info('test_func timings', extra={
         'execution_time': ms_elapsed,
     })
 
 
-    return HttpResponse('aaa')
+    return HttpResponse('aaa 2')
