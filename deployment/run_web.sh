@@ -7,7 +7,7 @@ python manage.py makemigrations --noinput
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
-
+env
 python manage.py runserver 0.0.0.0:8080
 
 # if [ "$DJANGO_SETTINGS_MODULE" = "djangok8.settings.local" ]
