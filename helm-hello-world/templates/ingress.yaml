@@ -9,7 +9,7 @@ spec:
   - host: dev.echo.k8.dealer-advance.com
     http:
       paths:
-      - path: /
-        backend:
-          serviceName: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}
-          servicePort: 80
+        - backend:
+            serviceName: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}
+            servicePort: 80
+          path: /
