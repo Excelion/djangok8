@@ -25,7 +25,7 @@ spec:
           env:
             - name: ENV_DATABASE_URL
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   name: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}
                   key: postgres-conntection-string
       imagePullSecrets:
