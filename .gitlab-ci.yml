@@ -61,7 +61,7 @@ deploy_staging:
   script: deployment_job
   environment:
     name: staging
-    url: http://staging.gke.dealer-advance.com
+    url: staging.gke.dealer-advance.com
   only:
   - master
 
@@ -71,6 +71,6 @@ deploy_production:
   script: deployment_job
   environment:
     name: production
-    url: http://pre-prod.gke.dealer-advance.com
+    url: pre-prod.gke.dealer-advance.com
   only:
   - master
