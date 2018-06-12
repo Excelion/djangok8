@@ -68,5 +68,8 @@ deploy_staging:
   environment:
     name: staging
     url: http://staging.django.gke.dealer-advance.com
+  environment:
+    name: production
+    url: http://staging.django.gke.dealer-advance.com
   only:
   - master
