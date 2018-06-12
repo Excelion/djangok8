@@ -15,7 +15,7 @@ LOGGING_ENVIRONMENT = 'production'
 DATABASES = {
     'default': dj_database_url.config(
       env='ENV_DATABASE_URL',
-      default='postgres://postgres:72jH9qVPA7@django-postgresql.svc.cluster.local/postgres'
+      default='postgres://postgres:72jH9qVPA7@django-postgresql.gitlab-djk8/postgres'
     ),
 }
 
