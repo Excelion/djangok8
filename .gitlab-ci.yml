@@ -34,10 +34,7 @@ build_image:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker push $CI_REGISTRY_IMAGE:latest
 
-
-deploy_staging:
-  stage: deploy
-  image: registry.gitlab.com/gitlab-examples/kubernetes-deploy
+deployment_job:
   script:
     - export DOCKER_HOST="tcp://localhost:2375"
     - echo "Deploy to staging server"
@@ -57,19 +54,23 @@ deploy_staging:
     - pwd
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - helm upgrade --install dev-echo ./helm-hello-world --set ci_env.url=${CI_ENVIRONMENT_URL}
-#    - which kubectl
-#    - |
-#    cat <<EOF | kubectl apply -f -
-#        kind: Namespace
-#        apiVersion: v1
-#        metadata:
-#          name: $KUBE_NAMESPACE
-#        EOF
+
+deploy_staging:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-examples/kubernetes-deploy
+  script: deployment_job
   environment:
     name: staging
     url: http://staging.django.gke.dealer-advance.com
+  only:
+  - master
+
+deploy_production:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-examples/kubernetes-deploy
+  script: deployment_job
   environment:
     name: production
-    url: http://staging.django.gke.dealer-advance.com
+    url: http://pre-prod.django.gke.dealer-advance.com
   only:
   - master
