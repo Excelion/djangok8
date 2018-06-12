@@ -55,7 +55,7 @@ deploy_staging:
     - env
     - pwd
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - helm upgrade --install dev-echo ./helm-hello-world --set ci_env.url=${CI_ENVIRONMENT_URL}
+    - helm upgrade --install stage-django ./helm-hello-world --set ci_env.url=${CI_ENVIRONMENT_URL}
   environment:
     name: staging
     url: staging.gke.dealer-advance.com
@@ -84,7 +84,7 @@ deploy_production:
     - env
     - pwd
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - helm upgrade --install dev-echo ./helm-hello-world --set ci_env.url=${CI_ENVIRONMENT_URL}
+    - helm upgrade --install pre-prod-django ./helm-hello-world --set ci_env.url=${CI_ENVIRONMENT_URL}
   environment:
     name: production
     url: pre-prod.gke.dealer-advance.com

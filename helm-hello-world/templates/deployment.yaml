@@ -22,5 +22,11 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
+          env:
+            - name: ENV_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}
+                  key: postgres-conntection-string
       imagePullSecrets:
         - name: regcred
