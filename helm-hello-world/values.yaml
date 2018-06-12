@@ -2,3 +2,5 @@ image:
 #  repository: gcr.io/google-samples/node-hello
   repository: registry.gitlab.com/gleb-britecore/djk8
   tag: 'latest'
+ci_env:
+  url: http://staging.django.gke.ffffu.com

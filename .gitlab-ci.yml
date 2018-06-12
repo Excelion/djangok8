@@ -56,7 +56,7 @@ deploy_staging:
     - env
     - pwd
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - helm upgrade --install dev-echo ./helm-hello-world
+    - helm upgrade --install dev-echo ./helm-hello-world --set ci_env.url=${CI_ENVIRONMENT_URL}
 #    - which kubectl
 #    - |
 #    cat <<EOF | kubectl apply -f -
@@ -67,6 +67,6 @@ deploy_staging:
 #        EOF
   environment:
     name: staging
-    url: http://staging.dj.k8.example.com
+    url: http://staging.django.gke.dealer-advance.com
   only:
   - master
