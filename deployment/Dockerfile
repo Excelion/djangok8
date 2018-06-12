@@ -24,6 +24,7 @@ ADD requirements.txt /code/
 
 ARG BA_REQUIREMENTS_FILE=requirements.txt
 ENV BA_REQUIREMENTS_FILE ${BA_REQUIREMENTS_FILE}
+
 RUN pip install -r ${BA_REQUIREMENTS_FILE}
 
 COPY . /code
