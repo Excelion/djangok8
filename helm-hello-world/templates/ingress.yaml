@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: dev.echo.gke.dealer-advance.com
+  - host: {{ .Values.ci_env.url }}
     http:
       paths:
         - backend:
