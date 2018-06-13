@@ -141,7 +141,7 @@ STATIC_URL = '/static/'
 
 REDIS_PORT = 6379
 REDIS_DB = 0
-REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR', 'redis')
+REDIS_HOST = os.environ.get('ENV_REDIS_PORT_6379_TCP_ADDR', 'redis')
 
 RABBIT_HOSTNAME = os.environ.get('RABBIT_PORT_5672_TCP', 'rabbit')
 
