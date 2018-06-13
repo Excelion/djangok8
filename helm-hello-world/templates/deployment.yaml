@@ -33,6 +33,12 @@ spec:
                 configMapKeyRef:
                   name: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}
                   key: redis-hostname
+            - name: ENV_RABBIT_PORT_5672_TCP
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}
+                  key: rabbit-hostname
+
 
       imagePullSecrets:
         - name: regcred

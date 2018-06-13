@@ -143,7 +143,7 @@ REDIS_PORT = 6379
 REDIS_DB = 0
 REDIS_HOST = os.environ.get('ENV_REDIS_PORT_6379_TCP_ADDR', 'redis')
 
-RABBIT_HOSTNAME = os.environ.get('RABBIT_PORT_5672_TCP', 'rabbit')
+RABBIT_HOSTNAME = os.environ.get('ENV_RABBIT_PORT_5672_TCP', 'rabbit')
 
 if RABBIT_HOSTNAME.startswith('tcp://'):
     RABBIT_HOSTNAME = RABBIT_HOSTNAME.split('//')[1]
