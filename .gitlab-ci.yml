@@ -61,5 +61,5 @@ deploy_staging:
     name: staging
     url: staging.gke.dealer-advance.com
   only:
-    - master
+    - tags
 
