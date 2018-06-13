@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: redis
+  name: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}-redis
   labels:
     app: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}-redis
     version: {{ .Chart.Version }}
@@ -17,5 +17,9 @@ spec:
     spec:
       containers:
         - name: redis
-          imagePullPolicy: Always
+#          imagePullPolicy: Always
           image: redis
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+

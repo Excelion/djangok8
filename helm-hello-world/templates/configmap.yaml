@@ -10,4 +10,6 @@ type: Opaque
 data:
   postgres-conntection-string: postgres://postgres:72jH9qVPA7@django-postgresql/postgres
   redis-hostname: {{ printf "%s-%s" .Release.Name .Chart.Name | trunc 63 }}-redis
+  rabbit-default-user: admin
+  rabbit-default-pass: mypass
 
