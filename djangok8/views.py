@@ -38,4 +38,4 @@ def test_func(request):
     })
 
 
-    return HttpResponse('aaa 5')
+    return HttpResponse('tags test 6')
