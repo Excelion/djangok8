@@ -62,7 +62,7 @@ deploy_staging:
     - helm upgrade --install stage-django ./helm-hello-world --set ci_env.url=${CI_ENVIRONMENT_URL},image.tag=$CI_BUILD_TAG
   environment:
     name: staging
-    url: staging.gke.dealer-advance.com
+    url: staging.django.gke.dealer-advance.com
   only:
     - tags
 
