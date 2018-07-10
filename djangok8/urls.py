@@ -30,4 +30,5 @@ urlpatterns = [
     path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
     path('test/', views.test_func),
+    path('lead/', views.send_hubspot),
 ]
